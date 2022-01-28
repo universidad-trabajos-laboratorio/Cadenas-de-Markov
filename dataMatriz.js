@@ -11,7 +11,7 @@ const dataMatriz ={
 
 let data = dataMatriz;
 let cabecera = data.cabecera;
-const datosEstadoInicial = data.datosEstadoInicial;
+let datosEstadoInicial = data.datosEstadoInicial;
 const datosMatriz = data.datosMatriz
 let margen = data.margen;
 

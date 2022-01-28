@@ -1,13 +1,10 @@
-import { datosEstadoInicial,datosMatriz,margen} from './dataMatriz.js';
-import Matriz from './matriz.js';
-
-
-let matriz = new Matriz(datosMatriz);
-let estadoInicial = new Matriz(datosEstadoInicial);
-
-const recorrer = (matriz, estadoInicial) => {
+const recorrer = (matriz, estadoInicial,margen) => {
+    console.log("margen"+margen);
     let arrayResultadoFinal = [];
     let matrizTemporal = estadoInicial;
+
+    arrayResultadoFinal.push(matrizTemporal);
+    console.log(matrizTemporal)
 
     let terminar = false;
     while (!terminar) {
@@ -16,19 +13,24 @@ const recorrer = (matriz, estadoInicial) => {
         if (arrayResultadoFinal.length >= 1) {
             let usame = arrayResultadoFinal[arrayResultadoFinal.length - 1];
             usame.filas.forEach((value, index) => {
-                let alfo = usame.filas[index][0] - matrizTemporal.filas[index][0];
-                if (Math.abs(alfo) <= margen) {
+                let valor1 = usame.filas[index][0];
+                let valor2 = matrizTemporal.filas[index][0];
+                
+                let alfo = parseFloat(parseFloat(valor1).toFixed(15)) - parseFloat(parseFloat(valor2).toFixed(15));
+                console.log(valor1+ " - "+valor2)
+               
+                alfo = parseFloat((alfo).toFixed(15))
+               margen = parseFloat((margen).toFixed(15))
+                console.log("resta="+alfo)
+               console.log("MARGEN: "+margen);
+                
+                if (Math.abs(alfo) <= margen) {                 
                     terminar = true;
                 }
             })
-            if (!terminar) {
-                arrayResultadoFinal.push(matrizTemporal);
-            }
-
-
-        } else {
-            arrayResultadoFinal.push(matrizTemporal);
         }
+            arrayResultadoFinal.push(matrizTemporal);
+        
         console.log("BUCLE");
 
     }
@@ -37,7 +39,6 @@ const recorrer = (matriz, estadoInicial) => {
 }
 
 export default recorrer;
-export {matriz,estadoInicial};
 
 
 
